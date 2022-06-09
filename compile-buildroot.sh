@@ -39,7 +39,7 @@ filter_package_files() {
 export PATH="${PATH// /}"
 
 ./clone-buildroot.sh
-make -C buildroot/*/ -j$(nproc)
+make -C buildroot/*/ -j$(nproc) BR2_EXTERNAL=../../buildroot-customizations
 tar -c -v -C buildroot/*/output/target/ --owner=root --group=root \
 	$(cat buildroot/*/output/build/packages-file-list.txt | filter_package_files) \
 	| \
